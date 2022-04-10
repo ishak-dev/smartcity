@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="leaflet/leaflet.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <link
+      rel="stylesheet"
+      href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"
+    />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="stylesheet" href="leaflet.awesome-markers.css" />
+    <link
+      href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <script src="leaflet.awesome-markers.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js">
+
+  </script>
+  
+
+  </script>
+  
+
+    <!-- <script defer src="other.js"></script> -->
+    <script defer src="script.js"></script>
+
+    <title>Mapa aktivnosti</title>
+  </head>
+  <body>
+    <div class="options">
+      <ul>
+        <li id="radovi" class="option">radovi</li>
+        <li id="kultura" class="option">kultura</li>
+        <li id="saobracaj" class="option">saobracaj</li>
+        <li id="eventi" class="option">dogadjaji</li>
+        <li id="all" class="option">Sve</li>
+      </ul>
+    </div>
+    <div class="sidebar">
+      <ul class="workouts">
+        <form class="form hidden">
+          <div class="form__row">
+            <label class="form__label">Vrsta</label>
+            <select class="form__input form__input--type">
+              <option value="running">Čišćenje</option>
+              <option value="cycling">Sađenje</option>
+            </select>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Ime</label>
+            <input
+              class="form__input form__input--distance"
+              placeholder="ime"
+            />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Vrijeme</label>
+            <input
+              class="form__input form__input--duration"
+              placeholder="min"
+            />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Vrsta</label>
+            <input
+              class="form__input form__input--cadence"
+              placeholder="npr. Plastika"
+            />
+          </div>
+          <div class="form__row form__row--hidden">
+            <label class="form__label">Sadnice</label>
+            <input
+              class="form__input form__input--elevation"
+              placeholder="br."
+            />
+          </div>
+          <button class="form__btn" type="submit">OK</button>
+        </form>
+
+        <!-- <li class="workout workout--running" data-id="1234567890">
+          <h2 class="workout__title">Running on April 14</h2>
+          <div class="workout__details">
+            <span class="workout__icon">🏃‍♂️</span>
+            <span class="workout__value">5.2</span>
+            <span class="workout__unit">km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⏱</span>
+            <span class="workout__value">24</span>
+            <span class="workout__unit">min</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⚡️</span>
+            <span class="workout__value">4.6</span>
+            <span class="workout__unit">min/km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">🦶🏼</span>
+            <span class="workout__value">178</span>
+            <span class="workout__unit">spm</span>
+            <button class="edit__btn">Uredi</button>
+            <button class="delete__btn">Izbrisi</button>
+          </div>
+        </li>-->
+
+        <!--<li class="workout radovi" data-id="1234567891" type="popravka">
+          <div class="description">
+            <p>
+              Ekipe Službe za održavanje vodovodne mreže i objekata vrše
+              popravke kvarova na vodovodnoj mreži u ulicama: Baruthana, Ispod
+              grada, Kamenica a u ulici Džemala Bijedića izvode se radovi na
+              izradi priključka. Popravka kvara na priključku urađena je na još
+              jednoj lokaciji u ulici Baruthana.
+            </p>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <div class="duration">
+            <p>Vrijeme izvodjenja radova: <span class="time">3d</span></p>
+          </div>
+        </li>
+        <li class="workout kultura" data-id="1264567891">
+          <div class="description">
+            <p>
+              U periodu od 14. do 22. decembra održat će se peti festival
+              Kamernog teatra 55 „Dani Jurislava Korenića.
+            </p>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <div class="duration">
+            <p>Vrijeme izvodjenje predstave: <span class="time">20h</span></p>
+          </div>
+        </li>
+      </ul>-->
+
+      <!-- <p class="copyright">
+        &copy; Copyright by
+        <a
+          class="twitter-link"
+          target="_blank"
+          href="https://twitter.com/jonasschmedtman"
+          >Jonas Schmedtmann</a
+        >. Use for learning or your portfolio. Don't use to teach. Don't claim
+        as your own.
+      </p> -->
+    </div>
+
+    <div id="map"></div>
+  </body>
+</html>
